@@ -98,3 +98,33 @@ sin aviso.
 Se usa memoria adicional para la copia. El ranking se calcula sobre la
 copia, y las consultas por timestamp siguen usando el original.
 
+
+## DEC-05 — Ordenamiento y búsqueda
+
+**Semana:** 4
+
+**Problema:**
+Ordenar por PM2.5 destruye el orden por timestamp. En el experimento 5,
+la búsqueda binaria por timestamp encontró la lectura en la posición
+73412 con 16 comparaciones antes de ordenar. Después de ordenar por
+PM2.5 devolvió -1, aunque la lectura seguía existiendo: la búsqueda
+lineal la encontró en la posición 87705.
+
+**Alternativas:**
+- Copia.
+- Restaurar orden.
+- Índices separados.
+
+**Decisión:**
+Ordenar por PM2.5 sobre una copia del arreglo y conservar el original
+en orden cronológico.
+
+**Justificación:**
+La búsqueda binaria necesita el arreglo ordenado por timestamp. Con
+100.000 lecturas hizo 16 comparaciones, frente a 100.000 de la lineal.
+Ordenar una copia protege esa ventaja y evita respuestas incorrectas
+sin aviso.
+
+**Consecuencia:**
+Se usa memoria adicional para la copia. El ranking se calcula sobre la
+copia, y las consultas por timestamp siguen usando el original.
