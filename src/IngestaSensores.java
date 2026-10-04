@@ -38,6 +38,7 @@ public class IngestaSensores {
         // Los experimentos son parte de esta misma aplicación.
         //
         ejecutarExperimentosSemanaTres();
+        ejecutarExperimentosSemanaCuatro();
     }
 
     /**
@@ -51,10 +52,20 @@ public class IngestaSensores {
         System.out.println("====================================================");
         System.out.println();
 
-        BancoDePruebas.experimentoUno();
-        BancoDePruebas.experimentoDos();
-        BancoDePruebas.experimentoTres();
-        BancoDePruebas.experimentoCuatro();
+
+
+    }
+    private static void ejecutarExperimentosSemanaCuatro() {
+        BancoDeOrdenamiento banco =
+                new BancoDeOrdenamiento();
+
+        banco.experimentoUno();
+        banco.experimentoDos();
+        banco.experimentoTres();
+        banco.experimentoCuatro();
+        banco.experimentoCinco();
+
+
     }
 
     private static void imprimirResumenIngesta(
