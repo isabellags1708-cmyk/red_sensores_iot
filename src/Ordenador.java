@@ -177,11 +177,23 @@ public class Ordenador {
     private static void quickRecursivo(LecturaSensor[] datos, int inicio, int fin) {
         if (inicio >= fin) return;
         int posicionPivote = particionar(datos, inicio, fin);
-        quickRecursivo(datos, inicio, posicionPivote - 1);
-        quickRecursivo(datos, posicionPivote + 1, fin);
+        quickRecursivo(
+                datos,
+                inicio,
+                posicionPivote - 1
+        );
+        quickRecursivo(
+                datos,
+                posicionPivote +1,
+                fin
+        );
+
     }
 
     private static int particionar(LecturaSensor[] datos, int inicio, int fin) {
+        int azar = inicio + (int) (Math.random() * (fin - inicio + 1));
+        intercambiar(datos, inicio, azar);
+
         LecturaSensor pivote = datos[inicio];
         int limite = inicio;
         for (int i = inicio + 1; i <= fin; i++) {
